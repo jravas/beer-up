@@ -1,6 +1,10 @@
 <template>
   <div class="beer-item">
       <div class="beer-item-content cf">
+          <div class="favorites-button">
+              <i v-if="!data.favorites"  class="far fa-heart"></i>
+              <i v-if="data.favorites" style="color: #f05638;" class="fas fa-heart"></i>
+          </div>
           <div class="beer-item-content-image">
               <img :src="data.image_url" :alt="data.name">
           </div>
@@ -54,6 +58,13 @@ export default {
     .beer-item-content {
         position: relative;
         padding: 26px 20px 26px 22px;
+        .favorites-button {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 12px;
+            cursor: pointer;
+        }
         .beer-item-content-image {
             display: flex;
             float: left;

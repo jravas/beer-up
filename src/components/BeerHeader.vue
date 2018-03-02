@@ -7,24 +7,19 @@
             <ul>
               <li><router-link to="/">Home</router-link></li>
               <li><router-link to="/favorites">Favorites</router-link></li>
-              <button class="button-ghost">Join</button>
+              <button class="button-ghost" @click="$router.push({ path: '/join' })">Join</button>
             </ul>
           </nav>
         </div>
         <div class="hero container">
-          <div class="text">
-            <h5>The beerster pro 2.0</h5>
-            <h1>
-              Join our<br>
-              famous<br>
-              beerup!<br>
-            </h1>
-            <button class="button-primary">Join beerup</button>
-          </div>
+          <slot>
+            <!-- injecting content from parent component -->
+          </slot>
           <div class="image">
             <img src="../assets/illustration.png" alt="Beer up ilustration">
           </div>
-          <div class="cap"><img src="../assets/cap.png" alt="Cap"></div>
+          <!-- display only on home route -->
+          <div class="cap" v-if="$route.name == 'Home'"><img src="../assets/cap.png" alt="Cap"></div>
         </div>
       </header>
   </div>
@@ -38,12 +33,10 @@ export default {
 
 <style lang="scss">
 header {
-  margin-bottom: -100px;
   padding-top: 15px;
   background-color: #000;
   background-image: url('../assets/pattern.png');
   font-family: 'Montserrat';
-  // overflow: hidden;
 }
 .header {
   .logo {

@@ -9,7 +9,10 @@
 - [ ] remove unused fonts
 - [ ] modal
 - [ ] check HTML 5 elemnts
-- [ ] add slot in header
+- [x] add slot in header
+- [ ] font awesome
+- [ ] join success message
+- [ ] remove console logs
 
 ## Build Setup
 
