@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import store from '@/store/index'
 import BeerHeader from './components/BeerHeader.vue'
 import BeerFooter from './components/BeerFooter.vue'
 import HomeHeader from './components/slots/HomeHeader.vue'
@@ -23,6 +24,7 @@ import JoinHeader from './components/slots/JoinHeader.vue'
 
 export default {
   name: 'App',
+  store,
   components: {
     BeerHeader,
     BeerFooter,

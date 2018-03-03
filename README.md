@@ -13,6 +13,8 @@
 - [ ] font awesome
 - [ ] join success message
 - [ ] remove console logs
+- [ ] change import style import store from '@/store/index'
+- [ ] remove .vue
 
 ## Build Setup
 

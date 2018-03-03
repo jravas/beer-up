@@ -15,7 +15,6 @@
 <script>
 import BeerItem from './BeerItem.vue'
 import BeerModal from './BeerModal.vue'
-// import { EventBus } from '../eventBus.js'
 export default {
   name: 'Home',
   components: {
@@ -24,7 +23,6 @@ export default {
   },
   data () {
     return {
-      items: [],
       modalData: null,
       modalVisible: false,
       clickCount: 0
@@ -32,22 +30,7 @@ export default {
   },
   methods: {
     getBeer () {
-      let url = 'https://api.punkapi.com/v2/beers'
-      let itemsPerPage = '&per_page=20'
-      let pageNumber = '?page=1'
-      this.$http.get(url + pageNumber + itemsPerPage).then(
-        response => {
-          this.items = response.body
-          // when loading favorites check if id is favorite
-          this.items.forEach(function (el) {
-            el.favorites = false
-          })
-        },
-        response => {
-          // error callback
-          console.log('Loading error')
-        }
-      )
+      this.$store.dispatch('fetchItems')
     },
     openModal (item) {
       this.modalData = item
@@ -69,9 +52,17 @@ export default {
       console.log(this.items)
     }
   },
+  computed: {
+    // rename
+    items () {
+      return this.$store.state.items
+    }
+  },
+  created () {
+  },
   mounted () {
     this.getBeer()
-    console.log(this.bus)
+    // console.log(this.$store.state.items)
   }
 }
 </script>
