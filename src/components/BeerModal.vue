@@ -1,73 +1,65 @@
 <template>
-    <div class="modal-overlay" id="overlay-id">
-        <div id="modal-body">
-            <div class="modal-inner">
-            <!-- <span id="close-button">x</span> -->
-            <div id="favorites-button" @click="emitFavorite">
-                <i v-if="!localFavorites" class="far fa-heart"></i>
-                <i v-if="localFavorites" style="color: #f05638;" class="fas fa-heart"></i>
-            </div>
-            <i id="close-button" class="fas fa-times"></i>
-            <div class="modal-image"><img :src="data.image_url" alt="data.name"></div>
-            <div class="modal-info">
-                <h3>{{ data.name }}</h3>
-                <div class="info">
+  <div class="modal-overlay" id="overlay-id">
+    <div id="modal-body">
+        <div class="modal-inner">
+          <div id="favorites-button" @click="emitFavorite">
+            <i v-if="!data.favorites" class="far fa-heart"></i>
+            <i v-if="data.favorites" style="color: #f05638;" class="fas fa-heart"></i>
+          </div>
+          <i id="close-button" class="fas fa-times"></i>
+          <div class="modal-image"><img :src="data.image_url" alt="data.name"></div>
+          <div class="modal-info">
+              <h3>{{ data.name }}</h3>
+              <div class="info">
                 <div class="info-item">
-                    <span class="info-name">IBU</span>
-                    <span class="info-data">{{ data.ibu }}</span>
+                  <span class="info-name">IBU</span>
+                  <span class="info-data">{{ data.ibu }}</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-name">ABV</span>
-                    <span class="info-data">{{ data.abv }}%</span>
+                  <span class="info-name">ABV</span>
+                  <span class="info-data">{{ data.abv }}%</span>
                 </div>
                 <div class="info-recipe">
                     <table>
-                    <thead>
+                      <thead>
                         <th colspan="2">Malt</th>
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
                         <tr v-for="(item, index) in data.ingredients.malt" :key="index">
-                        <td><p class="name">{{ item.name }}</p></td>
-                        <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
+                          <td><p class="name">{{ item.name }}</p></td>
+                          <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
                         </tr>
-                    </tbody>
+                      </tbody>
                     </table>
                     <table>
-                    <thead>
+                      <thead>
                         <th colspan="2">Hops</th>
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
                         <tr v-for="(item, index) in data.ingredients.hops" :key="index">
-                        <td><p class="name">{{ item.name }}</p></td>
-                        <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
+                          <td><p class="name">{{ item.name }}</p></td>
+                          <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
                         </tr>
-                    </tbody>
+                      </tbody>
                     </table>
                 </div>
-                </div>
-            </div>
-            </div>
+              </div>
+          </div>
         </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
   name: 'beer-modal',
   props: ['data'],
-  data () {
-    return {
-      localFavorites: null
-    }
-  },
   methods: {
     emitFavorite () {
       // emit favorite event and change state of loacal fav var
-      this.localFavorites = !this.localFavorites
       this.$emit('favorite')
     }
   },
   mounted () {
-    this.localFavorites = this.data.favorites
     // emit close event on close button or modal overlay
     let that = this
     window.addEventListener('click', (event) => {

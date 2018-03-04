@@ -29,20 +29,7 @@
 <script>
 export default {
   name: 'beer-item',
-  props: ['data'],
-  methods: {
-    shortName () {
-      // too long names reduction
-      if (this.data.name.length > 14) {
-        this.data.displayName = this.data.name.slice(0, 14) + '...'
-        return
-      }
-      this.data.displayName = this.data.name
-    }
-  },
-  created () {
-    this.shortName()
-  }
+  props: ['data']
 }
 </script>
 <style lang="scss">

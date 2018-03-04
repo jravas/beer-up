@@ -1,8 +1,25 @@
 <template>
-  <div style="margin:100px">favorites</div>
+  <div class="home-container">
+    <section>
+      <h2>Beer</h2>
+      <div class="items-container">
+        <beer-item v-for="(item, index) in favorites" :key="index" :data="item"></beer-item>
+      </div>
+    </section>
+  </div>
 </template>
 <script>
+import BeerItem from './BeerItem.vue'
 export default {
-  name: 'Favorites'
+  name: 'Favorites',
+  components: {
+    BeerItem
+  },
+  computed: {
+    // get items from the store
+    favorites () {
+      return this.$store.state.favorites
+    }
+  }
 }
 </script>

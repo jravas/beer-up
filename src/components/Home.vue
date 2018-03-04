@@ -40,20 +40,13 @@ export default {
       this.modalVisible = !this.modalVisible
     },
     addToFavorites (data) {
-      console.log(this.items)
       // add item to favorites
-      console.log(data.favorites)
       data.favorites = !data.favorites
-      this.items.forEach(function (el) {
-        if (el.id === data.id) {
-          console.log(el)
-        }
-      })
-      console.log(this.items)
+      this.$store.dispatch('addToFavorites', data)
     }
   },
   computed: {
-    // rename
+    // get items from the store
     items () {
       return this.$store.state.items
     }

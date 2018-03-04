@@ -15,6 +15,9 @@
 - [ ] remove console logs
 - [ ] change import style import store from '@/store/index'
 - [ ] remove .vue
+- [ ] ES6 arrow
+- [ ] favortes duplicates
+- [ ] navigation active
 
 ## Build Setup
 
