@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Favorites from '@/components/Favorites'
-import Join from '@/components/Join'
+import Home from '@/components/pages/Home'
+import Favorites from '@/components/pages/Favorites'
+import Join from '@/components/pages/Join'
 
 Vue.use(Router)
 

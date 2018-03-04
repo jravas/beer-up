@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
-      <div class="cap"><img src="../assets/cap.png" alt="Cap"></div>
+      <div class="cap"><img src="@/assets/cap.png" alt="Cap"></div>
       <footer>
         <div class="container footer-content">
-          <div class="logo"><img src="../assets/logo.png" alt="Logo"></div>
+          <div class="logo"><img src="@/assets/logo.png" alt="Logo"></div>
           <nav class="footer-navigation">
             <ul>
               <li><router-link to="/">Home</router-link></li>
@@ -41,7 +41,7 @@
     }
   }
   background-color: #000;
-  background-image: url('../assets/pattern.png');
+  background-image: url('../../assets/pattern.png');
   font-family: 'Montserrat';
   .footer-content {
     padding-bottom: 50px;

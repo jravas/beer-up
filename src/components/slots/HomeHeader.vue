@@ -6,7 +6,7 @@
             famous<br>
             beerup!<br>
         </h1>
-        <button class="button-primary">Join beerup</button>
+        <button class="button-primary" @click="$router.push({ path: '/join' })">Join beerup</button>
     </div>
 </template>
 <script>

@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     items: [],
     favorites: [],
-    favoritesID: []
+    crate: [],
+    crates: []
   },
   // computed properties
   getters: {
@@ -18,22 +19,23 @@ export default new Vuex.Store({
   },
   // methods
   actions: {
-    fetchItems ({commit, state}) {
+    fetchItems ({commit, state}, page) {
       // make call but don't update item
       // because mutations are responsibe for updating items
       // instead run setItem mutation
       let items
       let url = 'https://api.punkapi.com/v2/beers'
       let itemsPerPage = '&per_page=20'
-      let pageNumber = '?page=1'
+      let pageNumber = '?page=' + page
       Vue.http.get(url + pageNumber + itemsPerPage).then(
         response => {
+          // pass response to items
           items = response.body
           // when loading favorites check if id is favorite
           items.forEach(function (el) {
-            // set favorites property
-            if (state.favoritesID.length) {
-              if (state.favoritesID.includes(el.id)) {
+            // check for favorites and set favorites property
+            if (state.favorites.length) {
+              if (state.favorites.some(e => (e.id === el.id))) {
                 el.favorites = true
               } else {
                 el.favorites = false
@@ -56,10 +58,13 @@ export default new Vuex.Store({
         }
       )
     },
-    // add item to favorites
     addToFavorites ({ commit }, favorite) {
-      // pass favorite item to mutation for save
+      // call mutation for adding item to favorites
       this.commit('setFavorites', favorite)
+    },
+    addToCrate ({ commit }, item) {
+      // call mutation for adding item to crate
+      this.commit('setCrate', item)
     }
   },
   // mutations are responsible for setting and updating state
@@ -69,16 +74,22 @@ export default new Vuex.Store({
       state.items = items
     },
     setFavorites (state, favorite) {
-      if (state.favoritesID.includes(favorite.id)) {
-        // remove item to favorites
-        console.log(state.favoritesID.indexOf(favorite.id))
-        console.log(state.favorites.indexOf(favorite))
-        state.favoritesID.splice(state.favoritesID.indexOf(favorite.id), 1)
-        state.favorites.splice(state.favorites.indexOf(favorite), 1)
+      // add item to favorites and remove if exist
+      // change
+      if (state.favorites.some(e => (e.id === favorite.id))) {
+        state.favorites.splice(state.favorites.findIndex(e => e.id === favorite.id), 1)
+        return
+      }
+      state.favorites.push(favorite)
+    },
+    setCrate (state, item) {
+      // add item to crate
+      console.log(state.crate.length)
+      console.log(item)
+      if (state.crate.length < 20) {
+        state.crate.push(item)
       } else {
-        // add item to favorites
-        state.favoritesID.push(favorite.id)
-        state.favorites.push(favorite)
+        alert('crate full')
       }
     }
   }

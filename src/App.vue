@@ -16,11 +16,11 @@
 
 <script>
 import store from '@/store/index'
-import BeerHeader from './components/BeerHeader.vue'
-import BeerFooter from './components/BeerFooter.vue'
-import HomeHeader from './components/slots/HomeHeader.vue'
-import FavoritesHeader from './components/slots/FavoritesHeader.vue'
-import JoinHeader from './components/slots/JoinHeader.vue'
+import BeerHeader from '@/components/layout/BeerHeader'
+import BeerFooter from '@/components/layout/BeerFooter'
+import HomeHeader from '@/components/slots/HomeHeader'
+import FavoritesHeader from '@/components/slots/FavoritesHeader'
+import JoinHeader from '@/components/slots/JoinHeader'
 
 export default {
   name: 'App',

@@ -2,12 +2,12 @@
   <div>
       <header>
         <div class="header container">
-          <div class="logo"><router-link to="/"><img src="../assets/logo.png" alt="Logo"></router-link></div>
+          <div class="logo"><router-link to="/"><img src="@/assets/logo.png" alt="Logo"></router-link></div>
           <nav class="main-navigation">
             <ul>
               <li><router-link to="/">Home</router-link></li>
               <li><router-link to="/favorites">Favorites</router-link></li>
-              <button class="button-ghost" @click="$router.push({ path: '/join' })">Join</button>
+              <li><button class="button-ghost" :class="{active: (this.$route.name === 'Join')}" @click="$router.push({ path: '/join' })">Join</button></li>
             </ul>
           </nav>
         </div>
@@ -16,10 +16,10 @@
             <!-- injecting content from parent component -->
           </slot>
           <div class="image">
-            <img src="../assets/illustration.png" alt="Beer up ilustration">
+            <img src="@/assets/illustration.png" alt="Beer up ilustration">
           </div>
           <!-- display only on home route -->
-          <div class="cap" v-if="$route.name == 'Home'"><img src="../assets/cap.png" alt="Cap"></div>
+          <div class="cap" v-if="$route.name == 'Home'"><img src="@/assets/cap.png" alt="Cap"></div>
         </div>
       </header>
   </div>
@@ -35,7 +35,7 @@ export default {
 header {
   padding-top: 15px;
   background-color: #000;
-  background-image: url('../assets/pattern.png');
+  background-image: url('../../assets/pattern.png');
   font-family: 'Montserrat';
 }
 .header {
@@ -58,9 +58,9 @@ header {
       display: flex;
       li {
         // align-self: center;
-        padding: 15px 40px;
-        cursor: pointer;
         &:not(:last-child){
+          padding: 15px 40px;
+          cursor: pointer;
           a {
             text-decoration: none;
             color: #fff;
@@ -73,7 +73,13 @@ header {
               border-bottom: 3px solid #FFC80A;
             }
           }
+          .router-link-exact-active {
+            border-bottom: 3px solid #FFC80A;
+          }
         }
+      }
+      .active {
+        background-color: rgba(255,200,10,0.2);
       }
     }
   }

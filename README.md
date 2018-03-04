@@ -5,19 +5,30 @@
 ## TODO
 
 - [x] font: Open Sans
+- [x] favortes duplicates
+- [x] navigation active
+- [x] join beerup at home leads nowhere
+- [x] change import style import store from '@/store/index'
+- [x] remove .vue
+- [x] add slot in header
 - [ ] spacing (_tooltip.scss)  is 2 spaces everything elese is 4
 - [ ] remove unused fonts
-- [ ] modal
+- [ ] modal overflow and recepie
 - [ ] check HTML 5 elemnts
-- [x] add slot in header
 - [ ] font awesome
-- [ ] join success message
+- [ ] join page success message
 - [ ] remove console logs
-- [ ] change import style import store from '@/store/index'
-- [ ] remove .vue
-- [ ] ES6 arrow
-- [ ] favortes duplicates
-- [ ] navigation active
+- [ ] ES6 arrow, + => ´´
+- [ ] footer navigation no hover states
+- [ ] no favorite beers message
+- [ ] lazy laoding
+- [ ] reconsider EXPERIMENTAL
+- [ ]  add margin top to modals
+
+## ASK for
+- User can now select multiple beer to add or remove from his favorites simultaneously
+- Can user add favorite beer in crate or any beer
+- what means active crate at same time
 
 ## Build Setup
 

@@ -55,7 +55,7 @@
             <input type="checkbox" v-model="checkOne"/>
             <div class="state">
               <span class="svg">
-                <img class="svg" src="../assets/checkbox checked.svg"/>
+                <img class="svg" src="@/assets/checkbox checked.svg"/>
               </span>
               <label><span class="check-lable">Let me know about future beerups!</span></label>
             </div>
@@ -64,7 +64,7 @@
             <input type="checkbox" v-model="checkTwo"/>
             <div class="state">
               <span class="svg">
-                <img class="svg" src="../assets/checkbox checked.svg"/>
+                <img class="svg" src="@/assets/checkbox checked.svg"/>
               </span>
               <label><span class="check-lable">Remind me one day before this beerup!</span></label>
             </div>

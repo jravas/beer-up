@@ -1,51 +1,52 @@
 <template>
   <div class="modal-overlay" id="overlay-id">
     <div id="modal-body">
-        <div class="modal-inner">
-          <div id="favorites-button" @click="emitFavorite">
-            <i v-if="!data.favorites" class="far fa-heart"></i>
-            <i v-if="data.favorites" style="color: #f05638;" class="fas fa-heart"></i>
-          </div>
-          <i id="close-button" class="fas fa-times"></i>
-          <div class="modal-image"><img :src="data.image_url" alt="data.name"></div>
-          <div class="modal-info">
-              <h3>{{ data.name }}</h3>
-              <div class="info">
-                <div class="info-item">
-                  <span class="info-name">IBU</span>
-                  <span class="info-data">{{ data.ibu }}</span>
-                </div>
-                <div class="info-item">
-                  <span class="info-name">ABV</span>
-                  <span class="info-data">{{ data.abv }}%</span>
-                </div>
-                <div class="info-recipe">
-                    <table>
-                      <thead>
-                        <th colspan="2">Malt</th>
-                      </thead>
-                      <tbody>
-                        <tr v-for="(item, index) in data.ingredients.malt" :key="index">
-                          <td><p class="name">{{ item.name }}</p></td>
-                          <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table>
-                      <thead>
-                        <th colspan="2">Hops</th>
-                      </thead>
-                      <tbody>
-                        <tr v-for="(item, index) in data.ingredients.hops" :key="index">
-                          <td><p class="name">{{ item.name }}</p></td>
-                          <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-              </div>
+      <div class="modal-inner">
+        <div id="favorites-button" @click="emitFavorite">
+          <i v-if="!data.favorites" class="far fa-heart"></i>
+          <i v-if="data.favorites" style="color: #f05638;" class="fas fa-heart"></i>
+        </div>
+        <i id="close-button" class="fas fa-times"></i>
+        <div class="modal-image"><img :src="data.image_url" alt="data.name"></div>
+        <div class="modal-info">
+          <h3>{{ data.name }}</h3>
+          <div class="info">
+            <div class="info-item">
+              <span class="info-name">IBU</span>
+              <span class="info-data">{{ data.ibu }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-name">ABV</span>
+              <span class="info-data">{{ data.abv }}%</span>
+            </div>
+            <div class="info-recipe">
+              <table>
+                <thead>
+                  <th colspan="2">Malt</th>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in data.ingredients.malt" :key="index">
+                    <td><p class="name">{{ item.name }}</p></td>
+                    <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <thead>
+                  <th colspan="2">Hops</th>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, index) in data.ingredients.hops" :key="index">
+                    <td><p class="name">{{ item.name }}</p></td>
+                    <td><p class="value">{{ item.amount.value }} {{ item.amount.unit }}</p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <button class="button-primary add-to-crate" @click="$emit('crate')">Add to crate</button>
+      </div>
     </div>
   </div>
 </template>
@@ -81,8 +82,8 @@ export default {
   height: 100%;
   z-index: 999;
   background-color: rgba(18,5,3,0.88);
-  background-image: url('../assets/pattern.png');
-
+  background-image: url('../../assets/pattern.png');
+  overflow: auto;
   display: flex;
   justify-content: center;
   #modal-body {
@@ -95,6 +96,9 @@ export default {
     .modal-inner {
       padding: 80px;
       display: flex;
+      // EXPERIMENTAL
+      flex-wrap: wrap;
+      //
       position: relative;
       #close-button {
         color: #FFC80A;
@@ -127,6 +131,9 @@ export default {
       }
       .modal-info {
         width: 100%;
+        // EXPERIMENTAL
+        max-width: 515px;
+        //
         margin-right: auto;
         margin-left: 100px;
         h3 {
@@ -184,6 +191,10 @@ export default {
             }
           }
         }
+      }
+      .add-to-crate {
+        margin-left: auto;
+        margin-top: 30px;
       }
     }
   }

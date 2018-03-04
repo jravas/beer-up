@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import BeerItem from './BeerItem.vue'
+import BeerItem from '@/components/layout/BeerItem.vue'
 export default {
   name: 'Favorites',
   components: {
