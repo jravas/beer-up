@@ -87,6 +87,9 @@ export default {
   display: flex;
   justify-content: center;
   #modal-body {
+    position: absolute;
+    top: 10%;
+    margin-bottom: 100px;
     width: 50%;
     padding: 20px;
     align-self: center;

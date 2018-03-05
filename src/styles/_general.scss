@@ -1,47 +1,83 @@
 
 .container {
-    display: flex;
-    width: 70%;
-    margin: 0 auto;
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
 }
 // buttons
 .button-primary {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 49.5px;
-    background-color: #FFC80A;
-    text-transform: uppercase;
-    font-family: 'Montserrat';
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #000;
-    outline: none;
-    cursor: pointer;
-    -webkit-transition: background-color 0.25s ease-in, color 0.5s ease-in;
-    transition: background-color 0.25s ease-in, color 0.5s ease-in;
-    &:hover {
-        background-color: #FFD33D;
-        color: #7F392C;
-    }
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 49.5px;
+  background-color: #FFC80A;
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #000;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: background-color 0.25s ease-in, color 0.5s ease-in;
+  transition: background-color 0.25s ease-in, color 0.5s ease-in;
+  &:hover {
+    background-color: #FFD33D;
+    color: #7F392C;
+  }
 }
 
 .button-ghost {
-    padding: 15px 40px;
-    cursor: pointer;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    color: #fff;
-    background-color: transparent;
-    border: 3px solid #FFC80A;
-    border-radius: 34px;
-    text-transform: uppercase;
-    outline: none;
-    -webkit-transition: background-color 0.25s ease-in;
-    transition: background-color 0.25s ease-in;
-    &:hover {
-        background-color: rgba(255,200,10,0.2);
-    }
+  position: relative;
+  overflow: hidden;
+  padding: 15px 40px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #fff;
+  background-color: transparent;
+  border: 3px solid #FFC80A;
+  border-radius: 34px;
+  text-transform: uppercase;
+  outline: none;
+  -webkit-transition: background-color 0.25s ease-in;
+  transition: background-color 0.25s ease-in;
+  &:hover {
+    background-color: rgba(255,200,10,0.2);
+  }
+}
+button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, .2);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+  
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(60, 60);
+  }
+}
+  
+button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
 }

@@ -10,13 +10,14 @@
                   @favorite="addToFavorites(item)">
         </beer-item>
       </div>
-      <beer-pagination :data="{page: page, number: items.length}"
-                        @nextPage="getBeer(page++)"
-                        @prevPage="getBeer(page--)">
+      <beer-pagination v-if="pagination"
+                      :data="{page: page, number: items.length}"
+                      @nextPage="nextPage"
+                      @prevPage="prevPage">
       </beer-pagination>
     </section>
     <aside>
-      <beer-crate :data="crateItems"></beer-crate>
+      <beer-crate></beer-crate>
     </aside>
     <beer-modal v-if="modalVisible"
                 :data="modalData"
@@ -32,6 +33,7 @@ import BeerItem from '@/components/layout/BeerItem'
 import BeerModal from '@/components/layout/BeerModal'
 import BeerPagination from '@/components/layout/BeerPagination'
 import BeerCrate from '@/components/layout/BeerCrate'
+import fakeItems from '../../data/items.js'
 export default {
   name: 'Home',
   components: {
@@ -44,18 +46,13 @@ export default {
     return {
       modalData: null,
       modalVisible: false,
-      page: 1
+      page: 1,
+      items: fakeItems.fakeItems,
+      pagination: false,
+      loaded: false
     }
   },
   computed: {
-    items () {
-      // get items from the store
-      return this.$store.state.items
-    },
-    crateItems () {
-      // get crate items from the store
-      return this.$store.state.crate
-    },
     lastPage () {
       // if there are less than 20 items current page is last
       return this.items.length === 20
@@ -66,7 +63,18 @@ export default {
   },
   methods: {
     getBeer (page) {
-      this.$store.dispatch('fetchItems', page)
+      this.loaded = false
+      this.$Progress.start()
+      var that = this
+      this.$store.dispatch('fetchItems', page).then(() => {
+        that.items = that.$store.state.items
+        // that.items.sort(function (a, b) {
+        //   return a.abv - b.abv
+        // })
+        this.loaded = true
+        that.pagination = true
+        that.$Progress.finish()
+      })
     },
     openModal (item) {
       this.modalData = item
@@ -85,6 +93,18 @@ export default {
     addToCrate (data) {
       // add item to crate¸
       this.$store.dispatch('addToCrate', data)
+      data.inCrate++
+    },
+    nextPage () {
+      // prevent nex page button if items aren't loaded
+      if (this.loaded) {
+        this.page++
+        this.getBeer(this.page)
+      }
+    },
+    prevPage () {
+      this.page--
+      this.getBeer(this.page)
     }
   },
   mounted () {

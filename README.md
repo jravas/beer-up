@@ -11,9 +11,13 @@
 - [x] change import style import store from '@/store/index'
 - [x] remove .vue
 - [x] add slot in header
+- [x]  add margin top to modals
+- [x] fix pagiantion
+- [x] no IBU but ABV present
+- [x] modal overflow
+- [ ] add more info in modal
 - [ ] spacing (_tooltip.scss)  is 2 spaces everything elese is 4
 - [ ] remove unused fonts
-- [ ] modal overflow and recepie
 - [ ] check HTML 5 elemnts
 - [ ] font awesome
 - [ ] join page success message
@@ -23,7 +27,10 @@
 - [ ] no favorite beers message
 - [ ] lazy laoding
 - [ ] reconsider EXPERIMENTAL
-- [ ]  add margin top to modals
+- [ ] beer added to cart
+- [ ] beer added to favorites message
+- [ ] reconsidee beer item name padding top
+- [ ] SORTING
 
 ## ASK for
 - User can now select multiple beer to add or remove from his favorites simultaneously

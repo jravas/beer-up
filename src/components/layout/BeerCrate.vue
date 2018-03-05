@@ -2,12 +2,18 @@
 <div class="crate-wrapper">
   <h2>Crate</h2>
   <div class="crate-swich">
-    <span class="active">One</span>
+    <!-- <span class="active">One</span>
     <span>Two</span>
-    <span>Three</span>
+    <span>Three</span> -->
+    <span v-for="(crate, index) in crates"
+          :key="index"
+          :class="{ active: crate.active }"
+          @click="activeCrate(index)">
+      {{ crate.name }}
+    </span>
   </div>
-  <div class="crate">
-    <img v-for="(items, index) in data" :key="index"
+  <div class="crate" v-if="selectedCrate">
+    <img v-for="(items, index) in selectedCrate.data" :key="index"
     class="bottle" src="@/assets/bottle.png" alt="Bottle">
   </div>
 </div>
@@ -15,7 +21,25 @@
 <script>
 export default {
   name: 'BeerCrate',
-  props: ['data']
+  computed: {
+    crates () {
+      // get crates from the store
+      return this.$store.state.crates
+    },
+    selectedCrate () {
+      // get selected crate from the store
+      return this.$store.state.activeCrate
+    }
+  },
+  methods: {
+    activeCrate (number) {
+      // select crate on user click
+      this.$store.dispatch('activeCrate', number)
+    }
+  },
+  mounted () {
+    this.activeCrate(0)
+  }
 }
 </script>
 <style lang="scss">
@@ -28,9 +52,15 @@ export default {
     text-transform: uppercase;
     letter-spacing: 2px;
     span {
+      cursor: pointer;
       padding-bottom: 2px;
+      -webkit-transition: color 0.1s ease-in;
+      transition: color 0.1s ease-in;
       &:not(:first-child){
-        padding-left: 25px;
+        margin-left: 25px;
+      }
+      &:hover {
+        color: #3F4750;
       }
     }
   }
