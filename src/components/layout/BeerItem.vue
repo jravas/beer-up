@@ -120,6 +120,7 @@ export default {
         cursor: pointer;
         // show animation if data is't laoded
         &:empty {
+          height: 0;
           background-color: #D2D2D2;
           animation: blinking 2s linear infinite;
         }

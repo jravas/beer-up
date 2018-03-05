@@ -31,6 +31,16 @@ export default {
     HomeHeader,
     FavoritesHeader,
     JoinHeader
+  },
+  beforeCreate () {
+    // load data from the localStorage
+    this.$store.commit('initialiseStore')
+  },
+  mounted () {
+    // add items from vuex store to localStorage
+    this.$store.subscribe((mutation, state) => {
+      localStorage.setItem('BeerUpStore', JSON.stringify(state))
+    })
   }
 }
 </script>

@@ -30,7 +30,9 @@
 - [ ] beer added to cart
 - [ ] beer added to favorites message
 - [ ] reconsidee beer item name padding top
-- [ ] SORTING
+- [ ] laoding failed
+- [x] SORTING
+- [ ] local storage
 
 ## ASK for
 - User can now select multiple beer to add or remove from his favorites simultaneously

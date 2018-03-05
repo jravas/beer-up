@@ -2,28 +2,32 @@
   <div class="home-container">
     <section>
       <h2>Beer</h2>
+      <beer-sort v-if="sortData.length" :data="sortData"></beer-sort>
       <div class="items-container">
-        <beer-item v-for="(item, index) in items"
-                  :key="index"
-                  :data="item"
-                  @modal="openModal(item)"
-                  @favorite="addToFavorites(item)">
+        <beer-item
+          v-for="(item, index) in items"
+          :key="index"
+          :data="item"
+          @modal="openModal(item)"
+          @favorite="addToFavorites(item)">
         </beer-item>
       </div>
-      <beer-pagination v-if="pagination"
-                      :data="{page: page, number: items.length}"
-                      @nextPage="nextPage"
-                      @prevPage="prevPage">
+      <beer-pagination
+        v-if="pagination"
+        :data="{page: page, number: items.length}"
+        @nextPage="nextPage"
+        @prevPage="prevPage">
       </beer-pagination>
     </section>
     <aside>
       <beer-crate></beer-crate>
     </aside>
-    <beer-modal v-if="modalVisible"
-                :data="modalData"
-                @close="closeModal"
-                @favorite="addToFavorites(modalData)"
-                @crate="addToCrate(modalData)">
+    <beer-modal
+      v-if="modalVisible"
+      :data="modalData"
+      @close="closeModal"
+      @favorite="addToFavorites(modalData)"
+      @crate="addToCrate(modalData)">
     </beer-modal>
   </div>
 </template>
@@ -32,6 +36,7 @@
 import BeerItem from '@/components/layout/BeerItem'
 import BeerModal from '@/components/layout/BeerModal'
 import BeerPagination from '@/components/layout/BeerPagination'
+import BeerSort from '@/components/layout/BeerSort'
 import BeerCrate from '@/components/layout/BeerCrate'
 import fakeItems from '../../data/items.js'
 export default {
@@ -40,7 +45,8 @@ export default {
     BeerItem,
     BeerModal,
     BeerPagination,
-    BeerCrate
+    BeerCrate,
+    BeerSort
   },
   data () {
     return {
@@ -49,6 +55,7 @@ export default {
       page: 1,
       items: fakeItems.fakeItems,
       pagination: false,
+      sortData: [],
       loaded: false
     }
   },
@@ -67,11 +74,10 @@ export default {
       this.$Progress.start()
       var that = this
       this.$store.dispatch('fetchItems', page).then(() => {
+        // pass data to sortin component
+        that.sortData = that.$store.state.items
         that.items = that.$store.state.items
-        // that.items.sort(function (a, b) {
-        //   return a.abv - b.abv
-        // })
-        this.loaded = true
+        that.loaded = true
         that.pagination = true
         that.$Progress.finish()
       })
@@ -123,6 +129,7 @@ export default {
     //
     display: flex;
     h2 {
+      display: inline-block;
       margin-bottom: 30px;
       font-family: 'Montserrat';
       font-size: 36px;

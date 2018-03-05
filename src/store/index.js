@@ -124,6 +124,15 @@ export default new Vuex.Store({
       } else {
         alert('crate full')
       }
+    },
+    initialiseStore (state) {
+      // Check if the ID exists
+      if (localStorage.getItem('BeerUpStore')) {
+        // Replace the state object with the stored item
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem('BeerUpStore')))
+        )
+      }
     }
   }
 })
