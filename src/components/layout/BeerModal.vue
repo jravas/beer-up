@@ -90,18 +90,17 @@ export default {
     position: absolute;
     top: 10%;
     margin-bottom: 100px;
-    width: 50%;
+    max-width: 696px;
+    width: 100%;
     padding: 20px;
     align-self: center;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 4px 48px 0 rgba(0,0,0,0.32);
     .modal-inner {
-      padding: 80px;
+      padding: 50px;
       display: flex;
-      // EXPERIMENTAL
       flex-wrap: wrap;
-      //
       position: relative;
       #close-button {
         color: #FFC80A;
@@ -121,7 +120,7 @@ export default {
       .modal-image {
         display: flex;
         // margin-right: auto;
-        margin-left: 60px;
+        margin-left: 30px;
         width: 115px;
         height: auto;
         // height: 409px;
@@ -134,11 +133,9 @@ export default {
       }
       .modal-info {
         width: 100%;
-        // EXPERIMENTAL
-        max-width: 515px;
-        //
+        max-width: 400px;
         margin-right: auto;
-        margin-left: 100px;
+        margin-left: 50px;
         h3 {
           margin-bottom: 20px;
           font-family: 'Montserrat';

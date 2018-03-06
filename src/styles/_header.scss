@@ -1,0 +1,116 @@
+header {
+  padding-top: 15px;
+  background-color: #000;
+  background-image: url('./assets/pattern.png');
+  font-family: 'Montserrat';
+}
+.header {
+  .logo {
+    margin-right: auto;
+    align-self: center;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .main-navigation {
+    margin-left: auto;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #fff;
+    ul {
+      display: flex;
+      li {
+        // align-self: center;
+        &:not(:last-child){
+          padding: 15px 40px;
+          cursor: pointer;
+          a {
+            text-decoration: none;
+            color: #fff;
+            padding: 0 3px;
+            padding-bottom: 6px;
+            border-color: #FFC80A;
+            -webkit-transition: border 0.1s ease-in;
+            transition: border 0.1s ease-in;
+            &:hover {
+              border-bottom: 3px solid #FFC80A;
+            }
+          }
+          .router-link-exact-active {
+            border-bottom: 3px solid #FFC80A;
+          }
+        }
+      }
+      .active {
+        background-color: rgba(255,200,10,0.2);
+      }
+    }
+  }
+}
+.hero {
+  position: relative;
+  padding-top: 100px;
+  text-transform: uppercase;
+  color: #fff;
+  @include s980 {
+    display: block;
+  }
+  .text {
+    margin-right: auto;
+    font-weight: 700;
+    h5 {
+      padding-bottom: 30px;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    h1 {
+      margin-bottom: 50px;
+      font-size: 85px;
+      font-weight: 700;
+    }
+    // lazy fix
+    .button-fix-tainer {
+      display: none;
+    }
+    @include s1280 {
+      h1 {
+        font-size: 60px;
+      }
+    }
+    @include s980 {
+      width: 100%;
+      text-align: center;
+      .button-fix-tainer {
+        width: 100%;
+        position: absolute;
+        bottom: 100px;
+        z-index: 999;
+        display: block;
+        bottom: 80.5px;
+      }
+      .without-fix {
+        display: none;
+      }
+    }
+  }
+  .image {
+    margin-left: auto;
+    @include s980 {
+      max-width: 425px;
+      margin: 0 auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .cap {
+    position: absolute;
+    bottom: 88px;
+    right: 45px;
+    z-index: 998;
+  }
+}

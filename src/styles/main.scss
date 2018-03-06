@@ -1,4 +1,14 @@
 @import 'reset';
 @import 'fonts';
 @import 'tooltip';
+@import 'mixins';;
+// some general styles
 @import 'general';
+// header styles
+@import 'header';
+// styles for home & favorites pages
+@import 'home';
+// styles for join page
+@import 'join';
+// sort component styles
+@import 'sort';

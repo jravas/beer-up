@@ -1,0 +1,49 @@
+// home and favorites styles
+.home-wrap {
+    background-color: #F7F7F7;
+    position: relative;
+    padding-bottom: 80px;
+  .home-container {
+    margin-top: -100px;
+    position: relative;
+    display: flex;
+    h2 {
+      display: inline-block;
+      margin-bottom: 30px;
+      font-family: 'Montserrat';
+      font-size: 36px;
+      font-weight: 600;
+      color: #212121;
+      @include s1280 {
+        margin-bottom: 15px;
+      }
+    }
+    section {
+      max-width: 744px;
+      width: 100%;
+      margin-left: auto;
+      padding-top: 85px;
+      @include s1280 {
+        max-width: 565px;
+      }
+      @include s980 {
+        max-width: 360px;
+      }
+      .items-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+    aside {
+      max-width: 264px;
+      width: 100%;
+      margin-left: 120px;
+      margin-right: auto;
+      padding-top: 85px;
+    }
+  }
+  .favorites-margin {
+    margin-top: -343px;
+  }
+}

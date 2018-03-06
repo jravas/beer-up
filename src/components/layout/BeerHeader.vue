@@ -1,27 +1,27 @@
 <template>
   <div>
-      <header>
-        <div class="header container">
-          <div class="logo"><router-link to="/"><img src="@/assets/logo.png" alt="Logo"></router-link></div>
-          <nav class="main-navigation">
-            <ul>
-              <li><router-link to="/">Home</router-link></li>
-              <li><router-link to="/favorites">Favorites</router-link></li>
-              <li><button class="button-ghost" :class="{active: (this.$route.name === 'Join')}" @click="$router.push({ path: '/join' })">Join</button></li>
-            </ul>
-          </nav>
+    <header>
+      <div class="header container">
+        <div class="logo"><router-link to="/"><img src="@/assets/logo.png" alt="Logo"></router-link></div>
+        <nav class="main-navigation">
+          <ul>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/favorites">Favorites</router-link></li>
+            <li><button class="button-ghost" :class="{active: (this.$route.name === 'Join')}" @click="$router.push({ path: '/join' })">Join</button></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="hero container">
+        <slot>
+          <!-- injecting content from parent component -->
+        </slot>
+        <div class="image">
+          <img src="@/assets/illustration.png" alt="Beer up ilustration">
         </div>
-        <div class="hero container">
-          <slot>
-            <!-- injecting content from parent component -->
-          </slot>
-          <div class="image">
-            <img src="@/assets/illustration.png" alt="Beer up ilustration">
-          </div>
-          <!-- display only on home route -->
-          <div class="cap" v-if="$route.name == 'Home'"><img src="@/assets/cap.png" alt="Cap"></div>
-        </div>
-      </header>
+        <!-- display only on home route -->
+        <div class="cap" v-if="$route.name == 'Home'"><img src="@/assets/cap.png" alt="Cap"></div>
+      </div>
+    </header>
   </div>
 </template>
 
@@ -30,91 +30,3 @@ export default {
   name: 'beer-header'
 }
 </script>
-
-<style lang="scss">
-header {
-  padding-top: 15px;
-  background-color: #000;
-  background-image: url('../../assets/pattern.png');
-  font-family: 'Montserrat';
-}
-.header {
-  .logo {
-    margin-right: auto;
-    align-self: center;
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-  .main-navigation {
-    margin-left: auto;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 2px;
-    font-weight: 700;
-    color: #fff;
-    ul {
-      display: flex;
-      li {
-        // align-self: center;
-        &:not(:last-child){
-          padding: 15px 40px;
-          cursor: pointer;
-          a {
-            text-decoration: none;
-            color: #fff;
-            padding: 0 3px;
-            padding-bottom: 6px;
-            border-color: #FFC80A;
-            -webkit-transition: border 0.1s ease-in;
-            transition: border 0.1s ease-in;
-            &:hover {
-              border-bottom: 3px solid #FFC80A;
-            }
-          }
-          .router-link-exact-active {
-            border-bottom: 3px solid #FFC80A;
-          }
-        }
-      }
-      .active {
-        background-color: rgba(255,200,10,0.2);
-      }
-    }
-  }
-}
-.hero {
-  position: relative;
-  padding-top: 100px;
-  text-transform: uppercase;
-  color: #fff;
-  .text {
-    margin-right: auto;
-    font-weight: 700;
-    h5 {
-      padding-bottom: 30px;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-    h1 {
-      margin-bottom: 50px;
-      font-size: 85px;
-      font-weight: 700;
-    }
-  }
-  .image {
-    margin-left: auto;
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-  .cap {
-    position: absolute;
-    bottom: 88px;
-    right: 45px;
-    z-index: 998;
-  }
-}
-</style>

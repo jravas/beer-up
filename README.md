@@ -15,6 +15,8 @@
 - [x] fix pagiantion
 - [x] no IBU but ABV present
 - [x] modal overflow
+- [x] SORTING
+- [x] local storage
 - [ ] add more info in modal
 - [ ] spacing (_tooltip.scss)  is 2 spaces everything elese is 4
 - [ ] remove unused fonts
@@ -30,9 +32,8 @@
 - [ ] beer added to cart
 - [ ] beer added to favorites message
 - [ ] reconsidee beer item name padding top
-- [ ] laoding failed
-- [x] SORTING
-- [ ] local storage
+- [ ] loading failed
+- [ ] deufalt sort
 
 ## ASK for
 - User can now select multiple beer to add or remove from his favorites simultaneously

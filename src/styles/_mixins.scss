@@ -1,0 +1,10 @@
+// usage @include s1280 { }
+@mixin s1280{
+	@media screen and (max-width: 1280px){ @content;}
+}
+@mixin s980{
+	@media screen and (max-width: 980px){ @content;}
+}
+@mixin s736{
+	@media screen and (max-width: 736px){ @content;}
+}
