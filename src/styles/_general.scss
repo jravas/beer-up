@@ -3,6 +3,9 @@
   display: flex;
   width: 70%;
   margin: 0 auto;
+  @include s1280 {
+    width: 80%;
+  }
 }
 // buttons
 .button-primary {

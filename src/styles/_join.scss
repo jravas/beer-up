@@ -3,11 +3,14 @@
 	margin-top: -343px;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	position: relative;
+  position: relative;
 	.join-wrap {
 		max-width: 552px;
 		width: 100%;
-		margin: 0 auto;
+    margin: 0 auto;
+    @include s768 {
+      width: 95%;
+    }
 	}
 	h3 {
 			font-family: 'Montserrat';
@@ -23,12 +26,19 @@
 		padding: 5px 10px;
 		background-color: #fff;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
-		border-radius: 4px;
+    border-radius: 4px;
+    @include s768 {
+      width: 95%;
+      box-sizing: border-box;
+    }
 		// ****** input group styles *****
 		.input-group {
 			padding: 0 30px;
 			padding-bottom: 16px;
-			border-bottom: 1px solid #D8D8D8;
+      border-bottom: 1px solid #D8D8D8;
+      @include s768 {
+        padding: 0 20px;
+      }
 			.label {
 				display: block;
 				padding-top: 40px;
@@ -55,7 +65,11 @@
 				border: 1px solid transparent;
 				&:focus {
 					border: 1px solid #F05638;
-				}
+        }
+        @include s768 {
+          width: 100%;
+          box-sizing: border-box;
+        }
 			}
 			p {
 				margin-top: 10px;
@@ -68,7 +82,7 @@
 				display: block;
 				margin-bottom: 16px;
 				font-family: "Open Sans";
-				font-size: 14px;
+        font-size: 14px;
 				.radio-label {
 					span {
 						margin-left: 12px;
@@ -98,14 +112,25 @@
 		}
 		.checkboxes-group {
 			padding: 30px;
-			padding-bottom: 40px;
+      padding-bottom: 40px;
+      @include s768 {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
 			.pretty {
 				margin-bottom: 24px;
 				font-family: "Open Sans";
 				font-size: 14px;
 				.check-lable {
 					margin-left: 12px;
-				}
+        }
+        @include s768 {
+          font-size: 12px;
+          margin-bottom: 15px;
+          .check-lable {
+            margin-left: 2px;
+          }
+        }
 			}
 		}
 		// button fix

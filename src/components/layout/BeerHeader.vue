@@ -10,6 +10,17 @@
             <li><button class="button-ghost" :class="{active: (this.$route.name === 'Join')}" @click="$router.push({ path: '/join' })">Join</button></li>
           </ul>
         </nav>
+        <nav class="mobile-navigation">
+          <i v-if="!navigationActive" class="fas fa-bars mobile-navigation-button" @click="toggleNavigation"></i>
+          <i v-if="navigationActive" class="fas fa-times mobile-navigation-button mobile-navigation-close" @click="toggleNavigation"></i>
+          <div class="mobile-navigation-items-wrapper" v-if="navigationActive">
+            <ul class="mobile-navigation-items">
+              <li><router-link to="/">Home</router-link></li>
+              <li><router-link to="/favorites">Favorites</router-link></li>
+              <li><router-link to="/join">Join</router-link></li>
+            </ul>
+          </div>
+        </nav>
       </div>
       <div class="hero container">
         <slot>
@@ -27,6 +38,16 @@
 
 <script>
 export default {
-  name: 'beer-header'
+  name: 'beer-header',
+  data () {
+    return {
+      navigationActive: false
+    }
+  },
+  methods: {
+    toggleNavigation () {
+      this.navigationActive = !this.navigationActive
+    }
+  }
 }
 </script>

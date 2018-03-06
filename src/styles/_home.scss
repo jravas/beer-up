@@ -7,6 +7,9 @@
     margin-top: -100px;
     position: relative;
     display: flex;
+    @include s768 {
+      flex-wrap: wrap;
+    }
     h2 {
       display: inline-block;
       margin-bottom: 30px;
@@ -29,6 +32,10 @@
       @include s980 {
         max-width: 360px;
       }
+      @include s768 {
+        max-width: 90%;
+        margin: auto;
+      }
       .items-container {
         display: flex;
         flex-wrap: wrap;
@@ -41,6 +48,9 @@
       margin-left: 120px;
       margin-right: auto;
       padding-top: 85px;
+      @include s768 {
+        margin: auto;
+      }
     }
   }
   .favorites-margin {

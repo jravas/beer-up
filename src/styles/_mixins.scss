@@ -5,6 +5,6 @@
 @mixin s980{
 	@media screen and (max-width: 980px){ @content;}
 }
-@mixin s736{
-	@media screen and (max-width: 736px){ @content;}
+@mixin s768{
+	@media screen and (max-width: 768px){ @content;}
 }

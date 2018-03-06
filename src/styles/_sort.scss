@@ -14,6 +14,9 @@
       text-align: right;
       margin-bottom: 15px;
     }
+    @include s768 {
+      text-align: center;
+    }
     .sort-by-title {
       font-weight: 700;
       color: #212121;
