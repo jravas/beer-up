@@ -12,32 +12,3 @@ export default {
   props: ['data']
 }
 </script>
-
-<style lang="scss">
-.pagination {
-    text-align: center;
-    margin-top: 20px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    .pages {
-      padding: 0 15px;
-      font-family: 'Montserrat';
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .arrows {
-      padding: 0 10px;
-      font-size: 18px;
-      cursor: pointer;
-      -webkit-transition: color 0.1s ease-in;
-      transition: color 0.1s ease-in;
-      &:hover {
-        color: #FFC80A;
-      }
-    }
-}
-</style>
