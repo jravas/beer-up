@@ -34,8 +34,7 @@
     font-weight: 700;
 }
 
-@import 'variables';
-
+// font awesome icons
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
@@ -68,4 +67,19 @@
   .fas {
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Font Awesome 5 Brands';
+    font-style: normal;
+    font-weight: normal;
+    src: url('#{$fa-font-path}/fa-brands-400.eot');
+    src: url('#{$fa-font-path}/fa-brands-400.eot?#iefix') format('embedded-opentype'),
+    url('#{$fa-font-path}/fa-brands-400.woff2') format('woff2'),
+    url('#{$fa-font-path}/fa-brands-400.woff') format('woff'),
+    url('#{$fa-font-path}/fa-brands-400.ttf') format('truetype'),
+    url('#{$fa-font-path}/fa-brands-400.svg#fontawesome') format('svg');
+  }
+  
+  .fab {
+    font-family: 'Font Awesome 5 Brands';
   }

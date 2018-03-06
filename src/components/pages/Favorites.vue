@@ -5,7 +5,7 @@
       <h2>My favourite beers</h2>
       <!-- items sorting component -->
       <beer-sort v-if="favorites.length" :data="favorites"></beer-sort>
-      <div class="items-container" id="items-container-scroll">
+      <div v-if="favorites.length" class="items-container" id="items-container-scroll">
         <!-- listing items with beer item component -->
         <beer-item
           v-for="(item, index) in favorites"
@@ -15,6 +15,7 @@
           @favorite="addToFavorites(item)">
         </beer-item>
       </div>
+      <div class="no-favorites" v-if="!favorites.length">No favorite beers selected :(</div>
     </section>
     <aside>
       <!-- crate sidebar -->
@@ -29,6 +30,8 @@
       @crate="addToCrate(modalData)">
     </beer-modal>
   </div>
+  <!-- notifications -->
+  <notifications classes="notification-styles" position="top center" group="addedToCrate" />
 </div>
 </template>
 <script>
@@ -79,8 +82,21 @@ export default {
     },
     addToCrate (data) {
       // add item to crate¸
-      this.$store.dispatch('addToCrate', data)
-      data.inCrate++
+      if (this.$store.state.activeCrate.data.length < 20) {
+        this.$store.dispatch('addToCrate', data)
+        data.inCrate++
+        this.$notify({
+          group: 'addedToCrate',
+          title: 'Beer added to crate',
+          type: 'warn'
+        })
+      } else {
+        this.$notify({
+          group: 'addedToCrate',
+          title: 'Crate full',
+          type: 'error'
+        })
+      }
     }
   },
   mounted () {

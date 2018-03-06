@@ -121,8 +121,6 @@ export default new Vuex.Store({
       // add item to crate
       if (state.activeCrate.data.length < 20) {
         state.activeCrate.data.push(item)
-      } else {
-        alert('crate full')
       }
     },
     initialiseStore (state) {

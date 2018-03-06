@@ -8,6 +8,7 @@ import VTooltip from 'v-tooltip'
 import VeeValidate from 'vee-validate'
 import PrettyCheckbox from 'pretty-checkbox-vue'
 import VueProgressBar from 'vue-progressbar'
+import Notifications from 'vue-notification'
 
 // form validation
 Vue.use(VeeValidate)
@@ -23,6 +24,8 @@ Vue.use(VueProgressBar, {
   failedColor: 'red',
   height: '10px'
 })
+// notifications
+Vue.use(Notifications)
 
 Vue.config.productionTip = false
 

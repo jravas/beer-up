@@ -74,6 +74,7 @@
         <button class="button-primary joinup-fix">Join up</button>
       </form>
     </div>
+    <notifications classes="notification-styles" position="top center" group="join" />
   </div>
 </template>
 <script>
@@ -104,6 +105,11 @@ export default {
       })
     },
     resetFields () {
+      this.$notify({
+        group: 'join',
+        title: 'Joined successfully!',
+        type: 'success'
+      })
       // reseting fields and validator
       this.name = null
       this.email = null

@@ -31,12 +31,12 @@
 
 ## MUST do
 - [x] font awesome
-- [ ] beer added to cart
-- [ ] beer added to favorites message
-- [ ] no favorite beers message
-- [ ] join page success message
-- [ ] footer navigation no hover states
-- [ ] close mobile navigation after page select
+- [x] beer added to cart
+- [x] beer added to favorites message
+- [x] no favorite beers message
+- [x] join page success message
+- [x] footer navigation no hover states
+- [x] close mobile navigation after page select
 
 ## ASK for
 - User can now select multiple beer to add or remove from his favorites simultaneously

@@ -44,6 +44,8 @@
       @nextPage="nextPage"
       @prevPage="prevPage">
     </beer-pagination>
+    <!-- notifications -->
+    <notifications classes="notification-styles" position="top center" group="addedToCrate" />
   </div>
 </template>
 
@@ -112,11 +114,29 @@ export default {
       // add item to favorites
       data.favorites = !data.favorites
       this.$store.dispatch('addToFavorites', data)
+      this.$notify({
+        group: 'addedToFavorites',
+        title: 'Beer added to favorites',
+        type: 'warn'
+      })
     },
     addToCrate (data) {
       // add item to crate¸
-      this.$store.dispatch('addToCrate', data)
-      data.inCrate++
+      if (this.$store.state.activeCrate.data.length < 20) {
+        this.$store.dispatch('addToCrate', data)
+        data.inCrate++
+        this.$notify({
+          group: 'addedToCrate',
+          title: 'Beer added to crate',
+          type: 'warn'
+        })
+      } else {
+        this.$notify({
+          group: 'addedToCrate',
+          title: 'Crate full',
+          type: 'error'
+        })
+      }
     },
     nextPage () {
       // prevent nex page button if items aren't loaded
@@ -131,6 +151,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$notify)
     this.getBeer(this.page)
     // attempt of infinite scroll implementation
     // load data on moblie when user scrolls

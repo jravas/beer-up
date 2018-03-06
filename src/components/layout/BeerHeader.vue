@@ -44,9 +44,27 @@ export default {
       navigationActive: false
     }
   },
+  computed: {
+    body () {
+      // geting body elment for setting overflow when modal active
+      return document.getElementsByTagName('body')[0]
+    }
+  },
   methods: {
     toggleNavigation () {
       this.navigationActive = !this.navigationActive
+      if (this.navigationActive) {
+        this.body.style.overflow = 'hidden'
+      } else {
+        this.body.style.overflow = 'auto'
+      }
+    }
+  },
+  watch: {
+    '$route': function (from, to) {
+      if (this.navigationActive) {
+        this.toggleNavigation()
+      }
     }
   }
 }
