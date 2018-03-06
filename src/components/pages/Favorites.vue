@@ -5,7 +5,7 @@
       <h2>My favourite beers</h2>
       <!-- items sorting component -->
       <beer-sort v-if="favorites.length" :data="favorites"></beer-sort>
-      <div class="items-container">
+      <div class="items-container" id="items-container-scroll">
         <!-- listing items with beer item component -->
         <beer-item
           v-for="(item, index) in favorites"

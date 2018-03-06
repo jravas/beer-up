@@ -21,19 +21,22 @@
 - [ ] spacing (_tooltip.scss)  is 2 spaces everything elese is 4
 - [ ] remove unused fonts
 - [ ] check HTML 5 elemnts
-- [ ] font awesome
-- [ ] join page success message
 - [ ] remove console logs
 - [ ] ES6 arrow, + => ´´
-- [ ] footer navigation no hover states
-- [ ] no favorite beers message
 - [ ] lazy laoding
 - [ ] reconsider EXPERIMENTAL
-- [ ] beer added to cart
-- [ ] beer added to favorites message
 - [ ] reconsidee beer item name padding top
 - [ ] loading failed
 - [ ] deufalt sort
+
+## MUST do
+- [x] font awesome
+- [ ] beer added to cart
+- [ ] beer added to favorites message
+- [ ] no favorite beers message
+- [ ] join page success message
+- [ ] footer navigation no hover states
+- [ ] close mobile navigation after page select
 
 ## ASK for
 - User can now select multiple beer to add or remove from his favorites simultaneously

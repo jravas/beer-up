@@ -5,7 +5,7 @@
         <h2>Beer</h2>
         <!-- items sorting component -->
         <beer-sort v-if="sortData.length" :data="sortData"></beer-sort>
-        <div class="items-container">
+        <div class="items-container" id="items-container-scroll">
           <!-- listing items with beer item component -->
           <beer-item
             v-for="(item, index) in items"
@@ -15,6 +15,13 @@
             @favorite="addToFavorites(item)">
           </beer-item>
         </div>
+        <beer-pagination
+          class="mobile-pagination"
+          v-if="pagination"
+          :data="{page: page, number: items.length}"
+          @nextPage="nextPage"
+          @prevPage="prevPage">
+        </beer-pagination>
       </section>
       <aside>
         <!-- crate sidebar -->
@@ -31,6 +38,7 @@
     </div>
     <!-- pagination -->
     <beer-pagination
+      class="desktop-pagination"
       v-if="pagination"
       :data="{page: page, number: items.length}"
       @nextPage="nextPage"
@@ -83,6 +91,7 @@ export default {
       var that = this
       this.$store.dispatch('fetchItems', page).then(() => {
         // pass data to sortin component
+        this.itemsLength = that.$store.state.items.length
         that.sortData = that.$store.state.items
         that.items = that.$store.state.items
         that.loaded = true
@@ -123,6 +132,20 @@ export default {
   },
   mounted () {
     this.getBeer(this.page)
+    // attempt of infinite scroll implementation
+    // load data on moblie when user scrolls
+    // if (window) {
+    //   window.addEventListener('touchmove', () => {
+    //     let screenWidth = document.getElementById('items-container-scroll').getBoundingClientRect().width
+    //     let scrollLeft = document.getElementById('items-container-scroll').scrollLeft
+    //     let scrollWidth = document.getElementById('items-container-scroll').scrollWidth
+    //     this.$store.commit('mobileFalse')
+    //     console.log(this.$store.state.mobileLoaded)
+    //     if (scrollLeft + screenWidth > scrollWidth) {
+    //       console.log('no more items')
+    //     }
+    //   })
+    // }
   }
 }
 </script>

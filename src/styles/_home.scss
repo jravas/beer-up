@@ -3,6 +3,17 @@
     background-color: #F7F7F7;
     position: relative;
     padding-bottom: 80px;
+    .mobile-pagination {
+      display: none;
+      @include s768 {
+        display: block;
+      }
+    }
+    @include s768 {
+      .desktop-pagination {
+        display: none;
+      }
+    }
   .home-container {
     margin-top: -100px;
     position: relative;
@@ -40,6 +51,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        @include s768 {
+          overflow-y: scroll;
+          flex-wrap: nowrap;
+        }
       }
     }
     aside {

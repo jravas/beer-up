@@ -1,0 +1,115 @@
+.beer-item {
+  width: 168px;
+  height: 168px;
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
+  -webkit-transition: box-shadow 0.1s ease-in;
+  transition: box-shadow 0.1s ease-in;
+  @include s768 {
+    min-width: 168px;
+    margin-right: 24px;
+  }
+  .beer-item-content {
+    position: relative;
+    padding: 26px 20px 26px 22px;
+    .favorites-button {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .beer-in-crate {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-family: 'Montserrat';
+      font-size: 12px;
+    }
+    .beer-item-content-image {
+      display: flex;
+      float: left;
+      width: 30px;
+      height: 116px;
+      img {
+        width: 100%;
+        height: auto;
+        align-self: center;
+      }
+    }
+    .beer-item-content-info {
+      float: left;
+      margin-left: 15px;
+      font-size: 14px;
+      // temp
+      width: calc(100% - 45px);
+      .name {
+        max-width: 64px;
+        height: 50px;
+        overflow: hidden;
+        padding-top: 14px;
+        font-family: 'Montserrat';
+        font-weight: 700;
+        line-height: 17px;
+        color: #292929;
+        text-transform: uppercase;
+        word-wrap:break-word;
+        cursor: pointer;
+        // show animation if data is't laoded
+        &:empty {
+          height: 0;
+          background-color: #D2D2D2;
+          animation: blinking 2s linear infinite;
+        }
+      }
+      .info {
+          width: 81px;
+          position: absolute;
+          bottom: 26px;
+        .info-item {
+          font-family: 'Open Sans';
+          line-height: 26px;
+          .info-name {
+            color: #9FA3A7;
+            float: left;
+          }
+          .info-data {
+            color: #3F4750;
+            float: right;
+            &:empty {
+              float: left;
+              width: 34px;
+              height: 12px;
+              // margin-bottom: 13px;
+              background-color: #EAEAEA;
+              animation: blinking 2s linear infinite;
+            }
+          }
+          &:first-child {
+            .info-data {
+              &:empty {
+                margin-top: -80px;
+              }
+            }
+          }
+          &:last-child {
+            .info-data {
+              &:empty {
+                margin-top: -55px;
+              }
+            }
+          }
+        }
+      }
+      @keyframes blinking {
+        50% { opacity: 0.3; }
+      }
+    }
+  }
+  &:hover {
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
