@@ -3,7 +3,10 @@
 	margin-top: -343px;
 	padding-top: 30px;
 	padding-bottom: 100px;
-  position: relative;
+	position: relative;
+	@include s768 {
+		margin-top: -238px;
+	}
 	.join-wrap {
 		max-width: 552px;
 		width: 100%;

@@ -20,6 +20,9 @@
     <aside>
       <!-- crate sidebar -->
       <beer-crate></beer-crate>
+      <div class="empty-crate-wrap">
+        <button class="button-primary without-fix" @click="resetCrate">Reset crate</button>
+      </div>
     </aside>
     <!-- modal with beer info -->
     <beer-modal
@@ -97,6 +100,10 @@ export default {
           type: 'error'
         })
       }
+    },
+    resetCrate () {
+      // reset crate
+      this.$store.dispatch('resetCrate')
     }
   },
   mounted () {

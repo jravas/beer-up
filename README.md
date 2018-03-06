@@ -24,7 +24,6 @@
 - [ ] remove console logs
 - [ ] ES6 arrow, + => ´´
 - [ ] lazy laoding
-- [ ] reconsider EXPERIMENTAL
 - [ ] reconsidee beer item name padding top
 - [ ] loading failed
 - [ ] deufalt sort

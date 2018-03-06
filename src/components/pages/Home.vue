@@ -26,6 +26,9 @@
       <aside>
         <!-- crate sidebar -->
         <beer-crate></beer-crate>
+        <div class="empty-crate-wrap">
+          <button class="button-primary without-fix" @click="resetCrate">Reset crate</button>
+        </div>
       </aside>
       <!-- modal with beer info -->
       <beer-modal
@@ -138,6 +141,10 @@ export default {
         })
       }
     },
+    resetCrate () {
+      // reset crate
+      this.$store.dispatch('resetCrate')
+    },
     nextPage () {
       // prevent nex page button if items aren't loaded
       if (this.loaded) {
@@ -151,7 +158,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$notify)
+    // load data
     this.getBeer(this.page)
     // attempt of infinite scroll implementation
     // load data on moblie when user scrolls

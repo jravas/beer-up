@@ -89,6 +89,10 @@ export default new Vuex.Store({
     activeCrate ({ commit }, crate) {
       // call mutation for setting active crate
       this.commit('setActiveCrate', crate)
+    },
+    resetCrate ({ commit }) {
+      // call mutation for adding item to crate
+      this.commit('emptyCrate')
     }
   },
   // mutations are responsible for setting and updating state
@@ -131,6 +135,10 @@ export default new Vuex.Store({
           Object.assign(state, JSON.parse(localStorage.getItem('BeerUpStore')))
         )
       }
+    },
+    emptyCrate (state) {
+      // reset crate
+      state.activeCrate.data = []
     }
   }
 })
