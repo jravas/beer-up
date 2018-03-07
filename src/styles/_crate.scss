@@ -6,6 +6,9 @@
     color: #9FA3A7;
     text-transform: uppercase;
     letter-spacing: 2px;
+    @include s768 {
+      text-align: center;
+    }
     span {
       cursor: pointer;
       padding-bottom: 2px;

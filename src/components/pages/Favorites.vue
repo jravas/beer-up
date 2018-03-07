@@ -55,14 +55,11 @@ export default {
     return {
       modalData: null,
       modalVisible: false,
-      sortData: []
+      sortData: [],
+      favorites: this.$store.state.favorites
     }
   },
   computed: {
-    // get items from the store
-    favorites () {
-      return this.$store.state.favorites
-    },
     body () {
       // geting body elment for setting overflow when modal active
       return document.getElementsByTagName('body')[0]
@@ -104,6 +101,7 @@ export default {
     resetCrate () {
       // reset crate
       this.$store.dispatch('resetCrate')
+      this.favorites = this.$store.state.favorites
     }
   },
   mounted () {

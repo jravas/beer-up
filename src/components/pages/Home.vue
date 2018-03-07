@@ -139,6 +139,8 @@ export default {
     resetCrate () {
       // reset crate
       this.$store.dispatch('resetCrate')
+      // rerender data
+      this.items = this.$store.state.items
     },
     nextPage () {
       // prevent nex page button if items aren't loaded
