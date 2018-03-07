@@ -93,6 +93,9 @@ export default new Vuex.Store({
     resetCrate ({ commit }) {
       // call mutation for adding item to crate
       this.commit('emptyCrate')
+    },
+    updateMobile ({ commit }, items) {
+      this.commit('setItems', items)
     }
   },
   // mutations are responsible for setting and updating state
@@ -139,20 +142,14 @@ export default new Vuex.Store({
     emptyCrate (state) {
       // reset counter in items
       state.items.forEach(function (el) {
-        for (let j = 0; j < state.activeCrate.data.length; j++) {
-          if (el.id === state.activeCrate.data[j].id) {
+        for (let i = 0; i < state.activeCrate.data.length; i++) {
+          if (el.id === state.activeCrate.data[i].id) {
             el.inCrate--
+            console.log(el.inCrate)
           }
         }
       })
       // reset counter in favorites
-      state.favorites.forEach(function (el) {
-        for (let j = 0; j < state.activeCrate.data.length; j++) {
-          if (el.id === state.activeCrate.data[j].id) {
-            el.inCrate--
-          }
-        }
-      })
       // reset crate
       state.activeCrate.data = []
     }

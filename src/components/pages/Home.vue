@@ -41,7 +41,7 @@
       @prevPage="prevPage">
     </beer-pagination>
     <!-- notifications -->
-    <notifications classes="notification-styles" position="top center" group="addedToCrate" />
+    <notifications classes="notification-styles" position="top center" group="homeGroup" />
   </div>
 </template>
 
@@ -66,6 +66,7 @@ export default {
       modalData: null,
       modalVisible: false,
       page: 1,
+      mobilePage: 2,
       items: fakeItems.fakeItems,
       pagination: false,
       sortData: [],
@@ -124,13 +125,13 @@ export default {
         this.$store.dispatch('addToCrate', data)
         data.inCrate++
         this.$notify({
-          group: 'addedToCrate',
+          group: 'homeGroup',
           title: 'Beer added to crate',
           type: 'warn'
         })
       } else {
         this.$notify({
-          group: 'addedToCrate',
+          group: 'homeGroup',
           title: 'Crate full',
           type: 'error'
         })
@@ -153,11 +154,11 @@ export default {
       this.page--
       this.getBeer(this.page)
     },
-    getBeerMobile (page, callback) {
+    getBeerMobile (mobilePage, callback) {
       this.$Progress.start()
       var that = this
       this.mobileLoaded = false
-      this.$store.dispatch('fetchItems', page).then(() => {
+      this.$store.dispatch('fetchItems', mobilePage).then(() => {
         // pass data to sortin component
         callback(that.$store.state.items)
         that.$Progress.finish()
@@ -165,8 +166,10 @@ export default {
     },
     loadMobile (data) {
       this.items = this.items.concat(data)
+      this.$store.dispatch('updateMobile', this.items)
+      this.sortData = this.items
       if (data.length === 20) {
-        this.page++
+        this.mobilePage++
         this.mobileLoaded = true
       } else {
         this.allDataLoaded = true
@@ -176,10 +179,13 @@ export default {
   mounted () {
     // load data
     this.getBeer(this.page)
-    this.getBeerMobile(2, this.loadMobile)
     // attempt of infinite scroll implementation
     // load data on moblie when user scrolls
     window.addEventListener('touchmove', () => {
+      // load page 2
+      if (this.mobilePage === 2) {
+        this.getBeerMobile(this.mobilePage, this.loadMobile)
+      }
       // get width of screen
       let screenWidth = document.getElementById('items-container-scroll').getBoundingClientRect().width
       // get how much element is scrolled
@@ -187,7 +193,14 @@ export default {
       // get width of scroll
       let scrollWidth = document.getElementById('items-container-scroll').scrollWidth
       if (scrollLeft + screenWidth > (scrollWidth / 2) && !this.allDataLoaded && this.mobileLoaded) {
-        this.getBeerMobile(this.page, this.loadMobile)
+        this.getBeerMobile(this.mobilePage, this.loadMobile)
+      }
+      if (scrollLeft + screenWidth === scrollWidth && this.allDataLoaded) {
+        this.$notify({
+          group: 'homeGroup',
+          title: 'No more beers !',
+          type: 'warn'
+        })
       }
     })
   }
