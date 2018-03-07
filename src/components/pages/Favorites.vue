@@ -101,7 +101,16 @@ export default {
     resetCrate () {
       // reset crate
       this.$store.dispatch('resetCrate')
-      this.favorites = this.$store.state.favorites
+      let that = this
+      this.favorites.forEach(function (el) {
+        console.log(that.$store.state.activeCrate.data)
+        for (let i = 0; i < that.$store.state.activeCrate.data.length; i++) {
+          if (el.id === that.$store.state.activeCrate.data.data[i].id) {
+            el.inCrate--
+          }
+        }
+      })
+      this.$store.dispatch('updateMobile', this.favorites)
     }
   },
   mounted () {

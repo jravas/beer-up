@@ -96,6 +96,9 @@ export default new Vuex.Store({
     },
     updateMobile ({ commit }, items) {
       this.commit('setItems', items)
+    },
+    updateFavrites ({commit}, items) {
+      this.commit('setItems', items)
     }
   },
   // mutations are responsible for setting and updating state
@@ -145,7 +148,6 @@ export default new Vuex.Store({
         for (let i = 0; i < state.activeCrate.data.length; i++) {
           if (el.id === state.activeCrate.data[i].id) {
             el.inCrate--
-            console.log(el.inCrate)
           }
         }
       })
