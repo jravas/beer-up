@@ -10,18 +10,11 @@
           <beer-item
             v-for="(item, index) in items"
             :key="index"
-            :data="item"
+            :data="{ item: item, index: index}"
             @modal="openModal(item)"
             @favorite="addToFavorites(item)">
           </beer-item>
         </div>
-        <beer-pagination
-          class="mobile-pagination"
-          v-if="pagination"
-          :data="{page: page, number: items.length}"
-          @nextPage="nextPage"
-          @prevPage="prevPage">
-        </beer-pagination>
       </section>
       <aside>
         <!-- crate sidebar -->
@@ -76,7 +69,9 @@ export default {
       items: fakeItems.fakeItems,
       pagination: false,
       sortData: [],
-      loaded: false
+      loaded: false,
+      allDataLoaded: false,
+      mobileLoaded: true
     }
   },
   computed: {
@@ -155,25 +150,44 @@ export default {
     prevPage () {
       this.page--
       this.getBeer(this.page)
+    },
+    getBeerMobile (page, callback) {
+      this.$Progress.start()
+      var that = this
+      this.mobileLoaded = false
+      this.$store.dispatch('fetchItems', page).then(() => {
+        // pass data to sortin component
+        callback(that.$store.state.items)
+        that.$Progress.finish()
+      })
+    },
+    loadMobile (data) {
+      this.items = this.items.concat(data)
+      if (data.length === 20) {
+        this.page++
+        this.mobileLoaded = true
+      } else {
+        this.allDataLoaded = true
+      }
     }
   },
   mounted () {
     // load data
     this.getBeer(this.page)
+    this.getBeerMobile(2, this.loadMobile)
     // attempt of infinite scroll implementation
     // load data on moblie when user scrolls
-    // if (window) {
-    //   window.addEventListener('touchmove', () => {
-    //     let screenWidth = document.getElementById('items-container-scroll').getBoundingClientRect().width
-    //     let scrollLeft = document.getElementById('items-container-scroll').scrollLeft
-    //     let scrollWidth = document.getElementById('items-container-scroll').scrollWidth
-    //     this.$store.commit('mobileFalse')
-    //     console.log(this.$store.state.mobileLoaded)
-    //     if (scrollLeft + screenWidth > scrollWidth) {
-    //       console.log('no more items')
-    //     }
-    //   })
-    // }
+    window.addEventListener('touchmove', () => {
+      // get width of screen
+      let screenWidth = document.getElementById('items-container-scroll').getBoundingClientRect().width
+      // get how much element is scrolled
+      let scrollLeft = document.getElementById('items-container-scroll').scrollLeft
+      // get width of scroll
+      let scrollWidth = document.getElementById('items-container-scroll').scrollWidth
+      if (scrollLeft + screenWidth > (scrollWidth / 2) && !this.allDataLoaded && this.mobileLoaded) {
+        this.getBeerMobile(this.page, this.loadMobile)
+      }
+    })
   }
 }
 </script>

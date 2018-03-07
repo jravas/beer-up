@@ -137,6 +137,22 @@ export default new Vuex.Store({
       }
     },
     emptyCrate (state) {
+      // reset counter in items
+      state.items.forEach(function (el) {
+        for (let j = 0; j < state.activeCrate.data.length; j++) {
+          if (el.id === state.activeCrate.data[j].id) {
+            el.inCrate--
+          }
+        }
+      })
+      // reset counter in favorites
+      state.favorites.forEach(function (el) {
+        for (let j = 0; j < state.activeCrate.data.length; j++) {
+          if (el.id === state.activeCrate.data[j].id) {
+            el.inCrate--
+          }
+        }
+      })
       // reset crate
       state.activeCrate.data = []
     }

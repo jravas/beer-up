@@ -10,7 +10,7 @@
         <beer-item
           v-for="(item, index) in favorites"
           :key="index"
-          :data="item"
+          :data="{ item: item, index: index}"
           @modal="openModal(item)"
           @favorite="addToFavorites(item)">
         </beer-item>

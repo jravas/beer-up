@@ -9,12 +9,6 @@
       text-align: center;
       margin: 160px 0;
     }
-    .mobile-pagination {
-      display: none;
-      @include s768 {
-        display: block;
-      }
-    }
     @include s768 {
       .desktop-pagination {
         display: none;
