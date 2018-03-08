@@ -42,7 +42,7 @@ export default {
       return document.getElementById(this.data.index)
     },
     favorite () {
-      return document.getElementById('favorite-' + this.data.item.id)
+      return document.getElementById('favorite-' + this.data.index)
     },
     abv () {
       return (this.data.item.abv !== '') ? (this.data.item.abv + ' %') : (this.data.item.abv)
