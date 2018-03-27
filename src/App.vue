@@ -48,4 +48,5 @@ export default {
 <style lang="scss">
 @import './styles/main';
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import '../node_modules/dragula/dist/dragula.css';
 </style>

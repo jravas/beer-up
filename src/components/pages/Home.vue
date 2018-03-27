@@ -10,6 +10,7 @@
           <beer-item
             v-for="(item, index) in items"
             :key="index"
+            :id="item.id"
             :data="{ item: item, index: index}"
             @modal="openModal(item)"
             @favorite="addToFavorites(item)">
@@ -52,6 +53,7 @@ import BeerPagination from '@/components/layout/BeerPagination'
 import BeerSort from '@/components/layout/BeerSort'
 import BeerCrate from '@/components/layout/BeerCrate'
 import fakeItems from '../../data/items.js'
+import dragula from 'dragula'
 export default {
   name: 'Home',
   components: {
@@ -177,6 +179,28 @@ export default {
     }
   },
   mounted () {
+    console.log(document.getElementById('crate-id'))
+    let that = this
+    dragula([document.getElementById('items-container-scroll'), document.getElementById('crate-id')], {
+      copy: function (el, source) {
+        return source === document.getElementById('items-container-scroll')
+      },
+      accepts: function (el, target) {
+        return target !== document.getElementById('items-container-scroll')
+      },
+      removeOnSpill: true
+    }).on('drop', function (el) {
+      console.log(el)
+      that.items.filter(function (e) {
+        if (Number(el.id) === e.id) {
+          console.log(e)
+          that.addToCrate(e)
+          el.remove()
+        }
+      })
+      el.classList.remove('beer-item')
+    }).on('drag', function (el) {
+    })
     // load data
     this.getBeer(this.page)
     // attempt of infinite scroll implementation

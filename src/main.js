@@ -26,7 +26,14 @@ Vue.use(VueProgressBar, {
 })
 // notifications
 Vue.use(Notifications)
-
+// dragula
+// Vue.mixin({
+//   methods: {
+//     dragula (data) {
+//       return dragula(data)
+//     }
+//   }
+// })
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -12,9 +12,11 @@
       {{ crate.name }}
     </span>
   </div>
-  <div class="crate" v-if="selectedCrate">
-    <img v-for="(items, index) in selectedCrate.data" :key="index"
-    class="bottle" src="@/assets/bottle.png" alt="Bottle">
+  <div id="crate-id" class="crate" v-if="selectedCrate">
+    <!-- <img v-for="(items, index) in selectedCrate.data" :key="index"
+    class="bottle" alt="Bottle"> -->
+    <div v-for="(items, index) in selectedCrate.data" :key="index"
+    class="bottle" alt="Bottle"></div>
   </div>
 </div>
 </template>

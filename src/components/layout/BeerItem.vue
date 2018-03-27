@@ -1,6 +1,6 @@
 <template>
-  <div class="beer-item" :id="data.index">
-    <div class="beer-item-content cf">
+  <div class="beer-item">
+    <div :id="data.index" class="beer-item-content cf">
       <!-- add to favorites button -->
       <div :id="'favorite-' + data.index" class="favorites-button">
         <i v-if="!data.item.favorites"  class="far fa-heart"></i>
